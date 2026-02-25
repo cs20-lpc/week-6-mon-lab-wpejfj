@@ -5,20 +5,39 @@
 #include <iostream>
 using namespace std;
 
+
 /*******************************************************************************
  * Function prototype
 *******************************************************************************/
 
 template <typename T>
-T findMaxRecTail(const T[] arr, const int size, int = 0)
+T findMaxRecTail(const T arr[], const int size, int i = 0)
 {
     // TO DO: Implement your code
+
+  if (i == size - 1)
+    return arr[i];
+
+  T max1 = findMaxRecTail(arr, size, i+1);
+  return (arr[i] > max1) ? arr[i] : max1;
+
 }
 
 template <typename T>
-T findMaxRecBinarySplit(const T[] arr, const int left, const int right)
+T findMaxRecBinarySplit(const T arr[], const int left, const int right)
 {
     // TO DO: Implement your code
+
+  if (left == right)
+    return arr[left];
+
+  int mid = left + (right - left) / 2;
+
+  T max1 = findMaxRecBinarySplit(arr, left, mid);
+  T max2 = findMaxRecBinarySplit(arr, mid+1, right);
+
+  return (max1 > max2) ? max1 : max2;
+  
 }
 /*******************************************************************************
  * Description:

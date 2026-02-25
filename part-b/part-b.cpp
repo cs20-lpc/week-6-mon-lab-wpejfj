@@ -33,3 +33,19 @@ int main() {
     // terminate
     return 0;
 }
+
+void towerHanoi(int numDisks, std::string a, std::string b, std::string c, int &numMoves) {
+  if (numDisks == 1) {
+    std::cout << "Moving disk " << numDisks << " from " << a << " to " << c << '\n';
+    ++numMoves;
+    return;
+  }
+
+  towerHanoi(numDisks - 1, a, c, b, numMoves);
+
+  std::cout << "Moving disk " << numDisks << " from " << a << " to " << c << '\n';
+  ++numMoves;
+
+  towerHanoi(numDisks - 1, b, a, c, numMoves);
+
+}
